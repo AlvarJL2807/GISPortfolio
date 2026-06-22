@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flooding DEM</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" type="text/css" href="./Qgis2threejs.css">
+    <script src="./threejs/three.min.js"></script>
+    <script src="./threejs/OrbitControls.js"></script>
+    <script src="./threejs/ViewHelper.js"></script>
+    <script src="Javascript/Qgis2threejs.js"></script>
+
+    <script src="Javascript/map3.js" defer></script>
+
+    <style>
+
+        body {
+            overflow: auto;
+        }
+
+
+        #map-wrapper {
+            position: relative;
+            height: 550px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            background-color: #12161a;
+            overflow: hidden;
+        }
+
+        #view { 
+            position: absolute; 
+            width: 100%; 
+            height: 100%; 
+        }
+
+
+        #popup, .q3d-popup {
+            background: rgba(26, 33, 41, 0.98);
+            color: #ffffff;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+        }
+        
+        #popupbar { background: #30363d; }
+        #closebtn { color: #ffffff; }
+
+
+        #custom-legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(26, 33, 41, 0.95);
+            color: #ffffff;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        #custom-legend h4 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        #custom-legend i {
+            width: 18px;
+            height: 14px;
+            float: left;
+            margin-right: 10px;
+            opacity: 0.8;
+            border-radius: 2px;
+        }
+
+        .back-link {
+            color: #a22080;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .sub-caption {
+            font-size: 12px;
+            color: #8b949e;
+            font-style: italic;
+            margin-top: 5px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .map-caption {
+            font-size: 14px;
+            color: #8b949e;
+            font-style: italic;
+            margin-top: 8px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        #layerpanel {
+            top: auto !important;
+            top: 50px !important;
+            left: 50px !important;
+            left: auto !important;
+            
+   
+            background: rgba(255, 255, 255, 0.95) !important;
+            color: #000000 !important;
+            border: 1px solid #cccccc !important;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+
+        #layerlist, #layerlist a, #layerlist span {
+            color: #000000 !important;
+        }
+        #infobtn {
+            display: none !important;
+        }
+
+
+        #layerbtn {
+            width: 40px !important;
+            height: 40px !important;
+            background-size: 30px !important;
+        }
+
+        #toolbtns {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+            .static-map-container {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .static-map-item {
+            flex: 1; /*hopefully share the space*/
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .static-map-img {
+            width: 80%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+    <header>
+        <div class="logo-thingy">GIS Portfolio</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#projects" class="active">Portfolio Works</a>
+        </nav>
+    </header>
+
+    <main class="content-section project-detail">
+        <a href="index.html#projects" class="back-link">&larr; Back to Home</a>
+        <pre> </pre>
+        <h1>Assignment 3: Digital Elevation Model</h1>
+        <p class="subtitle">Software Used: QGIS, VSCode, Qgis2threejs, Git</p>
+        <div class="project-layout">
+            <div class="project-info">
+                <h3>Course Context & Objective</h3>
+                <p>
+                    The goal of this assignment was to create a map showing an urban area and the extent to which it would be flooded if the water level rose. I created a map of Utrecht, showing which areas would be flooded if the water level rose to 3m NAP.</p>
+                <pre> </pre>
+                <h3>Technical Skills Learned</h3>
+                <ul>
+                    <li>Creating 3D interactive maps in QGIS using Qgis2thrheejs.</li>
+                    <li>Extruding OSM buildings based on DSM data.</li>
+                    <li>Uploading large files to github using the terminal.</li>
+                </ul>
+                <pre> </pre>
+                <h3>Results & Analysis</h3>
+                <p>
+                    The interactive map below shows a 3D view of the center of Utrecht. The grey blocks are the buildings, along with their approximate height. The map background is an OpenStreetMap tile that has been 'draped' on the digital terrain model in order to show elevation changes like the canals. The blue polygon shows where water would flood the land if it rose to 3m NAP (Amsterdam standard sea level). The opacity of the different layers can be modified using the hamburger menu.
+                </p>
+                <pre> </pre>
+                <p> I found this assignment quite easy and straightforward. Elevation models are something I work with quite often and the YouTube tutorial was very clear. In terms of comprehension, the biggest difficulty was determining whether I should export my map to HTML like the tutorial did, or use ArcGIS like I would have done with the old map assignment. I opted for the former. This map was made live by using Qgis2threejs's HTML exporter. Uploading the files to GitHub was the most challenging part of this assignment. I had to install GIT and learn how to use the terminal to upload files from my PC straight to Git's Large File Storage. I had to do this because my scene.js file was over the maximum GitHub upload size, so I had to find an alternative. In the end though, it worked out (or at least I think it did) and I learned something new from it.</p>
+                <pre> </pre>
+                <p> I didn't use AI much for this assignment. I only used it to restructure my code while it was still a work in progress, because I was once again getting a bit lost with my indentations and I did not want to fix them all manually. I did not need AI for the mapping part of the assignment, the YouTube tutorial sufficed.</p>
+                <pre> </pre>
+                <h3>Assignment Questions</h3>
+                <p>1) My region of interest is the Utrecht city center. I chose this area because I live here and I love this city. I was curious to see how vulnerable it would be to flooding, and how much flooding would be needed to significantly affect the city. The tutorial measured flooding in Rotterdam at 1m NAP but since no flooding was visible in Utrecht at that level, I increased to 3m NAP.</p>
+                <pre> </pre>
+                <p>2) What was surprising about Utrecht was to see how much water would need to rise to flood the city. I thought that 1m would already significantly affect the city, but I actually had to raise the virtual water level to 3m to start seeing flooded areas. Utrecht is a lot higher than I assumed, and the canal walls protect the city really well! (In theory, assuming they don’t collapse). </p>
+                <pre> </pre>
+                <p>3) My final combined file is 110mb. The DTM is 50mb and the DSM is 60mb. The scene.js file I used to make the interactive map is 26mb.</p>
+                <pre> </pre>
+                <p>4) My area is 3 square kilometers. It goes from the Dom Tower in the east to the cinema in the west.</p>
+                <pre> </pre>
+                <p>5) In this assignment, I learned how to extrude buildings downloaded from OSM, which is fun! I extruded the buildings to turn 2D polygons into 3D models with the height of the DSM file. I also learned how to use Qgis2threejs which I had unsuccessfully tried to use before. This allowed me to model the 3D map and export it as an interactive html + js file. This is what I used to add the interactive map to my website. I did not learn much about downloading elevation data from PDOK and manipulating DTMs and DSMs because I had done that before, but I did learn about the PDOK plugin for QGIS, which is a lot easier than downloading the data from the AHN viewer.</p>
+                <pre> </pre>
+                <p>For this assignment, I had originally planned to look at temporary WWII airfields in Normandy to see how much they had compacted the ground. In some cases, there was a visible difference in elevation where the runways and hangars used to be, even 70 years after they were dismantled. However, I ended up doing the flooding assignment instead because I was unable to make a nice interactive map of the elevation data where the airfields had been. </p>
+                <pre> </pre>
+            </div>
+
+            <div class="project-map">
+                <div id="map-wrapper">
+                    <div id="view">
+                        <div id="northarrow"></div>
+                        <div id="navigation"></div>
+                    </div>
+
+                    <div id="custom-legend">
+                        <h4>Legend</h4>
+                        <i style="background: #0073e6;"></i> Flooded Areas (&lt; 3m NAP)<br>
+                    </div>
+
+                    <div id="popup">
+                        <div id="closebtn">&times;</div>
+                        <div id="popupbar"></div>
+                        <div id="popupbody">
+                            <div id="popupcontent"></div>
+                            <div id="queryresult">
+                                <table id="qr_coords_table">
+                                    <caption>Clicked coordinates <div id="zoomtopoint" class="action-zoom zoombtn"></div></caption>
+                                    <tr><td id="qr_coords"></td></tr>
+                                </table>
+                                <table id="qr_layername_table">
+                                    <caption>Layer <div id="zoomtolayer" class="action-zoom zoombtn"></div></caption>
+                                    <tr><td id="qr_layername"></td></tr>
+                                </table>
+                                <table id="qr_attrs_table">
+                                    <caption>Attributes</caption>
+                                </table>
+                                <div id="orbitbtn" class="action-btn action-orbit">Orbit</div>
+                                <div id="measurebtn" class="action-btn">Measure distance</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="progress"><div id="progressbar"></div></div>
+                    
+                    <div id="toolbtns">
+                        <div id="layerbtn"></div>
+                        <div id="animbtn" class="hidden"></div>
+                        <div id="infobtn"></div>
+                    </div>
+                    
+                    <div id="header"></div>
+                    <div id="footer"></div>
+                    <div id="layerpanel"><div id="layerlist"></div></div>
+                </div>
+
+                <div class="map-caption">Figure 1: Interactive 3D flooding map of Utrecht.</div>
+                <pre> </pre><pre> </pre><pre> </pre><pre> </pre> <div class="static-map-container">
+                    <div class="static-map-item">
+                        <img src="Media/StaticFloodMap.png" alt="Flooding in Utrecht City Centre" class="static-map-img">
+                        <div class="sub-caption">Figure 2: Static map of flooding in Utrecht.</div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </main>
+
+    <footer>
+        <p> &copy; Alvar Jolin-Lombardini 2026.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vector Maps</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script src="Javascript/policeData.js"></script>
+    <script src="Javascript/fireData.js"></script> 
+
+    <script src="Javascript/map2.js" defer></script>
+
+    <style>
+        #map {
+            height: 550px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            background-color: #12161a; 
+        }
+        
+        .info {
+            padding: 10px 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            background: rgba(26, 33, 41, 0.95);
+            color: #ffffff;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .legend {
+            line-height: 20px;
+            color: #ffffff;
+            background: rgba(26, 33, 41, 0.95);
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .legend i {
+            width: 18px;
+            height: 14px;
+            float: left;
+            margin-right: 10px;
+            opacity: 0.8;
+            border-radius: 2px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            background: rgba(26, 33, 41, 0.98);
+            color: #ffffff;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+        }
+        .leaflet-popup-tip {
+            background: rgba(26, 33, 41, 0.98);
+        }
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .back-link {
+            color: #a22080;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .am-I-safe-maps-container {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .am-I-safe-map-item {
+            flex: 1; /*hopefully share the space*/
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .static-map-img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+
+        .sub-caption {
+            font-size: 12px;
+            color: #8b949e;
+            font-style: italic;
+            margin-top: 5px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+    <header>
+        <div class="logo-thingy">GIS Portfolio</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#projects" class="active">Portfolio Works</a>
+        </nav>
+    </header>
+
+    <main class="content-section project-detail">
+        <a href="index.html#projects" class="back-link">&larr; Back to Home</a>
+        <pre> </pre>
+        <h1>Assignment 2: Vector Maps</h1>
+        <p class="subtitle">Software Used: QGIS, VSCode, Overpass Turbo, Leaflet</p>
+        <div class="project-layout">
+            <div class="project-info">
+                <h3>Course Context & Objective</h3>
+                <p>
+                    The first part of this assignment was to visualize the locations in Utrecht that are at most 5 minutes away from the nearest police or fire station. The second part of this assignment involved collecting data about how safe we feel in different locations around UU, and placing those points on a map.
+                </p>
+                <pre> </pre>
+                <h3>Technical Skills Learned</h3>
+                <ul>
+                    <li>Creating isochrone maps in QGIS.</li>
+                    <li>Importing and processing large amounts of data from OpenStreetMap.</li>
+                    <li>Collecting and mapping VGI (volunteered geographic information).</li>
+                </ul>
+                <pre> </pre>
+                <h3>Results & Analysis</h3>
+                <p>
+                    The interactive map below shows the isochrones for 1-5 minutes away from the nearest fire station or police station. According to my analysis in QGIS, around 90,000 buildings were less than 5 minutes away from a police station or fire station. The static map shows an IDW (inverse distance weighted) map of how "safe" people feel in different areas of Utrecht.
+                </p>
+                <pre> </pre>
+                <p> I found this assignment quite challenging. My biggest difficulty was handling large amounts of data (over 150,000 polygons) without my computer crashing. It took a few hours to make all the necessary operations in QGIS. I also had some difficulty with making the kernel density map. I tried following a few different tutorials but all of my attempts either led to an app crash or a fully white map. In the end, I was unable to make the density map so I did an IDW of perceived safety instead. I felt the IDW was the next best solution, but there are some problems with it. Firstly, it assumes that discrete variables like perceived safety at a given location can be spread evenly over an area. It also assumes that there are no sudden changes in perceived safety, although local changes (streetlights, barriers, trees, etc) can drastically change how safe a space feels. Finally, it creates 'halos' of high or low perceived safety around extreme points, which could make an entire neighborhood seem unsafe simply based off of one person's perception of a single spot.</p>
+                <pre> </pre>
+                <p> I used AI to help me with this assignment. After trying a few different ways to get a kernel density map, I asked AI for tips. The tips did not work, but I did still attempt to use artificial intelligence to help me. I also asked AI to help me with my javascript for the interactive map below. I had successfully exported my isochrones as geoJSONs, converted them to JavaScript, and imported them, but I could not manage to show both the isochrones AND the map tiles. AI was able to fix my javascript and show both at once. It also added a tick-box to show/hide the isochrones, which I had not thought of but find very nice.</p>
+                <pre> </pre>
+                <h3>Assignment Questions</h3>
+                <p>1) The spatial question I was trying to answer was "How much of Utrecht is less than 5 minutes away from the nearest first responders?" I think this question is relevant because proximity to these stations directly affects how long you will have to wait in case of an emergency. This could lead to increased damages due to fire or crime in the areas not colored by the isochrones. I was, however, pleasantly surprised to see how much of the city is less than 5 minutes away from a station. For the second part of the assignment, the question I was trying to answer was "Do men in general feel safer outside than women?" I noticed that in the data, men don't seem to feel overwhelmingly more safe than women. I did, however, notice that the places men considered safe aren't necessarily considered safe by women, and vice versa.</p>
+                <pre> </pre>
+                <p>2) The first step to create the isochrone map was to download the spatial data from OpenStreetMap. Using QuickOSM crashed my computer, so I made a query on Overpass Turbo and downloaded the result as a geoJSON, which I imported into QGIS. I then generated isochrones for 1,2,3,4, and 5 minutes away from police and fire stations. I then converted my building polygons into centroid points, and counted how many centroids were located within the isochrone map. Finally, I exported my isochrones into geoJSON and added them to my website to make an interactive map rather than a static one. For the second part of the assignment, the first step was to download the survey data from ArcGIS. I then converted the "safety" values into numbers and separated men and women's responses. Once I had two sets of points, I interpolated the values to create smooth raster maps of perceived safety in the UU area. IDW (inverse distance weighting) calculates the value of every point by looking at the surrounding data and how far away it is. Nearby data points have a greater effect on the target location's value than distant data points. This method, as highlighted above, has many problems.</p>
+                <pre> </pre>
+                <p>3) For the first map, I noticed that most of Utrecht was within 5 minutes of a police or fire station, which is great news. I also noticed that the isochrone 'circles' aren't really circles. Cars can travel faster on major roads than they can on residential streets. This stretches the isochrone rings further where major roads are present, and pushes them closer to the station if only small streets and paths are present. Finally, I noticed that the isochrone data provided by the API seems largely correct but lacks accuracy. The ring borders are not very precise, and it seems like variables like the lack of highway exits at some locations are not taken into account. For the second map, I noticed that men don't really seem to feel that much safer outdoors than women do according to this dataset. This is likely because our dataset is very small, and variables like time of day, weather, presence of people, etc were not taken into account. I noticed that men and women don't seem to agree on what constitutes a "safe" place, because places like for example the Theehuis Rhijnauwen were deemed safe by men and unsafe by women.</p>
+                <pre> </pre>
+                <p>4) To improve on the data collection process in the future, I would like to get more data and make the collection more consistent. Recording things like the date, time, weather, business, etc would help analyze patterns in the data. I believe that for things like safety, far more data is needed. If a point in Zeist is considered safe, we need more data to understand why. Is it that specific point? Is it the entire town? Is it because it was sunny, or is it also safe on a rainy night? I believe that for something like this, the more data, the better. Both in terms of information depth and breadth.</p>
+                <pre> </pre>
+            </div>
+
+
+
+
+
+
+            <div class="project-map">
+                <div class="map-wrapper">
+                    <div id="map"></div>
+                </div>
+                <div class="map-caption">Figure 1: Interactive isochrone map showing which locations are less than 5 minutes away from a police or fire station.</div>
+                
+                <pre> </pre> <div class="am-I-safe-maps-container">
+                    <div class="am-I-safe-map-item">
+                        <img src="Media/WomenSafetyMap.png" alt="Perceived Safety For Women" class="static-map-img">
+                        <div class="sub-caption">Figure 2: Perceived Safety around Utrecht University (Women)</div>
+                    </div>
+                    <div class="am-I-safe-map-item">
+                        <img src="Media/MenSafetyMap.png" alt="Perceived Safety For Men" class="static-map-img">
+                        <div class="sub-caption">Figure 3: Perceived Safety around Utrecht University (Men)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p> &copy; Alvar Jolin-Lombardini 2026.</p>
+    </footer>
+
+</body>
+</html>

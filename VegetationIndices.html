@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegetation Indices Maps</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="Javascript/map4.js" defer></script>
+
+    <style>
+        .back-link {
+            color: #a22080;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .full-width-map-container {
+            width: 100%;
+            margin-bottom: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .full-width-map-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .sub-caption {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+</div>
+<body>
+
+    <header>
+        <div class="logo-thingy">GIS Portfolio</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#projects" class="active">Portfolio Works</a>
+        </nav>
+    </header>
+
+    <main class="content-section project-detail">
+        <a href="index.html#projects" class="back-link">&larr; Back to Home</a>
+        <pre> </pre>
+        
+        <h1>Assignment 4: Vegetation Indices</h1>
+        <p class="subtitle">Software Used: QGIS, VSCode, Sentinel Hub</p>
+
+        <div class="project-layout">
+            <div class="project-info">
+                <h3>Course Context & Objective</h3>
+                <p>
+                    In this module, we shifted our focus toward remote sensing and raster analysis. We explored how multispectral imagery captured by satellites can be used to assess environmental conditions on the ground. The objective of this assignment was to calculate and compare different vegetation indices to evaluate plant health, biomass, and land cover types in our study area.
+                </p>
+                <pre> </pre>
+
+                <h3>Technical Skills Learned</h3>
+                <ul>
+                    <li>Acquiring and pre-processing satellite imagery (e.g., Sentinel-2 / Landsat).</li>
+                    <li>Performing raster math using the QGIS Raster Calculator.</li>
+                    <li>Calculating the Normalized Difference Vegetation Index (NDVI) and other indices.</li>
+                    <li>Applying appropriate color ramps to continuous raster data to highlight ecological variations.</li>
+                </ul>
+                <pre> </pre>
+
+                <h3>Results & Analysis</h3>
+                <p>
+                    The maps on the right showcase four different representations of the study area based on remote sensing data. By manipulating the red and near-infrared (NIR) bands, we can emphasize different characteristics of the landscape. For example, the NDVI map clearly distinguishes between dense, healthy forests (dark green) and urbanized or barren land (red/brown).
+                </p>
+                <pre> </pre>
+                <p>
+                    During this assignment, I learned that while NDVI is the standard metric, it can sometimes saturate in areas with very dense biomass. Comparing it with other indices or viewing the raw false-color composite provides a much more comprehensive understanding of the physical Earth processes happening on the ground. 
+                </p>
+                <pre> </pre>
+                <h3>Assignment Questions</h3>
+                <p>1) The main spatial question I was trying to answer was how the distribution of green infrastructure varies across different zones. Using raster math allowed me to quantify what is normally just a qualitative observation.</p>
+                <pre> </pre>
+                <p>2) The first step was downloading cloud-free imagery. Then, I used the QGIS Raster Calculator to apply the standard NDVI formula: <code>(NIR - Red) / (NIR + Red)</code>. After generating the new raster layer, I adjusted the symbology using a diverging color ramp to make the contrast between vegetation and non-vegetation visually intuitive.</p>
+                <pre> </pre>
+            </div>
+
+            <div class="project-map">
+                <div class="full-width-map-container">
+                    <img src="Media/TrueColorComposite.jpg" alt="True Color Composite" class="full-width-map-img">
+                    <div class="sub-caption">Figure 1: True color composite showing the North ridge of the Lac Saint Jean in Quebec.</div>
+                </div>
+
+                <div class="full-width-map-container">
+                    <img src="Media/VegHealth2018.jpg" alt="False Color Composite for 2018." class="full-width-map-img">
+                    <div class="sub-caption">Figure 2: False color (RGB 8,4,3) showing vegetation health on the North ridge of the Lac Saint Jean in Quebec in 2018.</div>
+                </div>
+
+                <div class="full-width-map-container">
+                    <img src="Media/VegHealth2025.jpg" alt="False Color Composite for 2025." class="full-width-map-img">
+                    <div class="sub-caption">Figure 3: False color (RGB 8,4,3) showing vegetation health on the North ridge of the Lac Saint Jean in Quebec in 2025.</div>
+                </div>
+
+                <div class="full-width-map-container">
+                    <img src="Media/NDVI2018.png" alt="NDVI Map for 2018." class="full-width-map-img">
+                    <div class="sub-caption">Figure 4: NDVI calculation showing the North ridge of the Lac Saint Jean in Quebec in 2018.</div>
+                </div>
+
+                <div class="full-width-map-container">
+                    <img src="Media/NDVI2025.png" alt="NDVI Map for 2025." class="full-width-map-img">
+                    <div class="sub-caption">Figure 5: NDVI calculation showing the North ridge of the Lac Saint Jean in Quebec in 2025.</div>
+                </div>
+
+                <div class="full-width-map-container">
+                    <img src="Media/ChangeOverTime.jpg" alt="Vegetation Change Over Time Between 2018 and 2025." class="full-width-map-img">
+                    <div class="sub-caption">Figure 6: Vegetation change over time on the North ridge of the Lac Saint Jean in Quebec between 2018 and 2025. Red = worsened values, green = improvements.</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p> &#xA9; Alvar Jolin-Lombardini 2026.</p>
+    </footer>
+
+</body>
+</html>

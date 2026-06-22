@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIS Portfolio | Lab 1</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script src="Javascript/final.js"></script>
+    <script src="Javascript/map1.js" defer></script>
+    <script>
+        function openModal(src) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("fullImage");
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+    </script>
+
+    <style>
+
+        #map {
+            height: 550px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: #12161a; 
+        }
+        
+        .info {
+            padding: 10px 14px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 14px;
+            background: rgba(26, 33, 41, 0.95);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .legend {
+            line-height: 22px;
+            color: #ffffff;
+            background: rgba(26, 33, 41, 0.95);
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 10px;
+            opacity: 0.9;
+            border-radius: 2px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            background: rgba(26, 33, 41, 0.98);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .leaflet-popup-tip {
+            background: rgba(26, 33, 41, 0.98);
+            border: 1px solid var(--border-color);
+        }
+        .leaflet-popup-content h3 {
+            margin: 0 0 8px 0;
+            color: #ffffff;
+            font-size: 16px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 4px;
+        }
+        .leaflet-popup-content p {
+            margin: 4px 0;
+            font-size: 13px;
+        }
+        .trend-better {
+            color: #4ade80; 
+            font-weight: bold;
+        }
+        .trend-worse {
+            color: #f87171; 
+            font-weight: bold;
+        }
+        .trend-stable {
+            color: #e2e8f0;
+            font-weight: bold;
+        }
+
+        .back-link {
+            color: #a22080;
+            font-weight: bold;
+        }
+
+        .colorblind-toggle-btn {
+            position: absolute;
+            top: 80px;
+            left: 10px;
+            z-index: 1000;
+            background: rgba(26, 33, 41, 0.95);
+            color: var(--text-main, #ffffff);
+            border: 1px solid var(--border-color, #30363d);
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        .colorblind-toggle-btn:hover {
+            background: #21262d;
+            border-color: #8b949e;
+        }
+        .colorblind-toggle-btn.active {
+            background: #a22080;
+            color: #ffffff;
+            border-color: #c93b9f;
+        }
+        .map-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .oilrigs {
+            border-radius: 20px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-thingy">GIS Portfolio</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#projects" class="active">Portfolio Works</a>
+        </nav>
+    </header>
+
+    <main class="content-section project-detail">
+        <a href="index.html#projects" class="back-link">&larr; Back to Home</a>
+        <pre> </pre>
+        
+        <h1>Personal Mapping Projects</h1>
+        <p class="subtitle">Software Used: QGIS, OpenDroneMap, VSCode, Overpass Turbo, Simplemaps, OurAirports, GIMP</p>
+
+        <div class="gallery-container">
+    
+            <div class="gallery-item">
+                <img src="Media/OilRigs.png" alt="Offshore Oil Rigs" onclick="openModal(this.src)">
+                <pre> </pre>
+                <h3>Offshore Oil Rigs</h3>
+                <pre> </pre>
+                <p>I mapped the Dutch offshore oil rig network, using the project as a way to practice lighting and shading in QGIS. The first step of this project was downloading data from OurAirports to get the coordinates of airfields in the Netherlands. Offshore rigs generally have helipads, so this database was a good way to get the locations of the rigs. All airfields and heliports on land were filtered out, so only the North Sea rigs remained. I mapped each rig with a light blue dot and drew effects around each point to give them a glowing effect. Once I had each oil rig individually glowing, I duplicated the layer and added a white-blue gradient heatmap of the points to make it look like the rigs are illuminating the ocean. Finally, I added GeoJSON files of the Netherlands, Denmark, Germany, Belgium and the UK from simplemaps to show where the surrounding landmasses are, and I made them black.</p>
+                <pre> </pre>
+                <small><strong>Credits:</strong> Data sourced from ourairports.com | GeoJSON files of countries from simplemaps.com | Artistic inspiration from Terence (@researchremora)</small>
+            </div>
+
+            <div class="gallery-item">
+                <img src="Media/Aerodromes.png" alt="Map of Aerodromes in France" onclick="openModal(this.src)">
+                <pre> </pre>
+                <h3>Flying Club Competition</h3>
+                <pre> </pre>
+                <p>I fly at an "aéroclub" in France that hosts a yearly competition. The goal is to visit as many airports in France as possible during the year. Rather than relying on a bulky Excel file as was previously done, I decided to map the airports that the club has been to in 2025 and share it with the other members. I made a map in QGIS (shown above) and an interactive map (linked below). Orange dots are airports that the club didn't go to, and blue dots are the airports that the club managed to visit during the year. On the interactive map, clicking on a dot gives you the name of the airport. I plan to keep making maps like this for 2026 and beyond!</p>
+                <pre> </pre>
+                <a href="https://alvarjl2807.github.io/CarteAerodromes/">Interactive Map</a>
+                <pre> </pre>
+                <small><strong>Credits:</strong> Airport Locations from ourairports.com | GeoJSON file of France from simplemaps.com | Web map tiles from Leaflet and CartoDB</small>
+            </div>
+            <div class="gallery-item">
+                <img src="Media/TexturedModel.png" alt="Textured 3D Model of Building" onclick="openModal(this.src)">
+                <pre> </pre>
+                <h3>Textured 3D Model</h3>
+                <pre> </pre>
+                <p>I have been creating flat orthomosaics with drone images for a few years in order to contribute data to OpenStreetMap. This time, I wanted to try the next step; 3D models. I flew a grid + orbit flight plan and took around 300 images of this building from all angles. I then processed the data with WebODM to create this textured 3D model. With a bit of work, I was then able to place the model next to a point cloud map of the area in QGIS to compare how accurate both tools are. The photogrammetry from the drone is extremely precise, allowing for accuracy below 10cm but the LiDAR point cloud covers a much larger area, so both have different uses. This project had no actual purpose other than learning how to prepare flight plans, collect data, and work with 3D models.</p>
+                <pre> </pre>
+                <small><strong>Credits:</strong> 3D model from WebODM </small>
+            </div>
+        </div>
+
+        <div id="imageModal" class="modal" onclick="this.style.display='none'">
+            <span class="close" onclick="document.getElementById('imageModal').style.display='none'">&times;</span>
+            <img class="modal-content" id="fullImage">
+        </div>
+    </main>
+
+    <footer>
+        <p> &#xA9; Alvar Jolin-Lombardini 2026.</p>
+    </footer>
+
+
+</body>
+</html>
