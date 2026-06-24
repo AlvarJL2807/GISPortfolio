@@ -45,9 +45,9 @@ header {
     height: 90px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #a22080; /* Using your purple accent color */
+    border: 3px solid #a22080;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    flex-shrink: 0; /* Prevents the image from squishing */
+    flex-shrink: 0;
 }
 
 nav a {
