@@ -1,7 +1,7 @@
 :root {
     --bg-primary: #12161a;
     --bg-secondary: #1a2129;
-    --accent: #f57b63;
+    --accent: #ffffff;
     --text-main: #f0f4f8;
     --text-muted: #94a3b8;
     --border-color: #2e3b4e;
@@ -38,6 +38,16 @@ header {
     font-size: 1.2rem;
     letter-spacing: 1px;
     color: #a22080;
+}
+
+.profile-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #a22080; /* Using your purple accent color */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    flex-shrink: 0; /* Prevents the image from squishing */
 }
 
 nav a {
