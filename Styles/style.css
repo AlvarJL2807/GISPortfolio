@@ -269,11 +269,11 @@ footer {
 }
 
 .btn-projects {
-    border-color: #ed6c0a;
-    color: #ed6c0a;
+    border-color: #1090ec;
+    color: #1090ec;
 }
 .btn-projects:hover {
-    background-color: #ed6c0a;
+    background-color: #00538f;
     color: #000000;
 }
 
