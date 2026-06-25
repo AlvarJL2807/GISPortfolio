@@ -137,6 +137,9 @@
             border-radius: 20px;
             margin-top: 50px;
         }
+        .link {
+            color:#f87171;
+        }
     </style>
 </head>
 <body>
@@ -175,7 +178,7 @@
                 <pre> </pre>
                 <p>I fly at an "aéroclub" in France that hosts a yearly competition. The goal is to visit as many airports in France as possible during the year. Rather than relying on a bulky Excel file as was previously done, I decided to map the airports that the club has been to in 2025 and share it with the other members. I made a map in QGIS (shown above) and an interactive map (linked below). Orange dots are airports that the club didn't go to, and blue dots are the airports that the club managed to visit during the year. On the interactive map, clicking on a dot gives you the name of the airport. I plan to keep making maps like this for 2026 and beyond!</p>
                 <pre> </pre>
-                <a href="https://alvarjl2807.github.io/CarteAerodromes/">Interactive Map</a>
+                <a class="link" href="https://alvarjl2807.github.io/CarteAerodromes/">Interactive Map</a>
                 <pre> </pre>
                 <small><strong>Credits:</strong> Airport Locations from ourairports.com | GeoJSON file of France from simplemaps.com | Web map tiles from Leaflet and CartoDB</small>
             </div>
@@ -192,9 +195,20 @@
                 <img src="Media/SitioMata1.png" alt="Sitio de Mata, Costa Rica (Before)" onclick="openModal(this.src)">
                 <img src="Media/SitioMata2.png" alt="Sitio de Mata, Costa Rica (After)" onclick="openModal(this.src)">
                 <pre> </pre>
-                <h3>Mapping for OSM and HOT</h3>
+                <h3>Mapping for OpenStreetMap</h3>
                 <pre> </pre>
-                <p>I have been contributing vector data to OpenStreetMap and HOT (Humanitarian OpenstreetMap Team) for a few years. I usually map in 3 ways. The first mapping method I use is creating orthomosaics of an area with a drone, georeferencing it, and using it to add data to the map (missing roads, buildings, natural elements, amenities and land use). The second way I map is by walking or cycling and using StreetComplete to complete missing data in the places I visit. The last way is with HOT. I contribute to projects by using the requested satellite imagery (usually ESRI) to map missing roads and buildings within my assigned task bounds. HOT provides detailed maps to humanitarian workers in disaster-struck areas. I've worked on tasks in Peru and Rwanda for example. Many places around the world lack vector data, and HOT gives data that allows responders to know where they are and where they can go. The images above show Sitio de Mata, a small town in rural Costa Rica. It was missing a lot of data as you can see in the first image. I mapped all the roads, buildings, parks, and land-use I could find. The village now has a much more detailed map (as you can see in the second picture).</p>
+                <p>I have been contributing vector data to OpenStreetMap for a few years now. I usually map in a few different ways. The first mapping method I use is creating orthomosaics of an area with a drone, georeferencing them, and using them to add data to the map (missing roads, buildings, natural elements, amenities and land use). The second way I map is by walking or cycling and using StreetComplete to complete missing data in the places I visit. Another technique I use to map is simply using available aerial imagery and ground-truthing pictures found online to map areas that are not yet in OpenStreetMap. The last way is with GPS tracks. I go out with a GPS tracker and walk down paths, trails, and small roads. When I get home, I upload the GPX files and use the tracks to add roads and paths that were missing from OpenStreetMap. The images above show Sitio de Mata, a small town in rural Costa Rica. It was missing a lot of data as you can see in the first image. I mapped all the roads, buildings, parks, and land-use I could find. The village now has a much more detailed map (as you can see in the second picture). This mapping was done using aerial imagery and pictures taken on the ground.</p>
+                <pre> </pre>
+                <small><strong>Credits:</strong> Screenshots from OpenStreetMap </small>
+            </div>
+            <div class="gallery-item">
+                <img src="Media/Venezuela2.png" alt="Sitio de Mata, Costa Rica (After)" onclick="openModal(this.src)">
+                <pre> </pre>
+                <h3>Humanitarian OpenStreetMap Team</h3>
+                <pre> </pre>
+                <p>The Humanitarian OpenStreetMap Team (HOT) is a group of volunteers who map areas to support humanitarian efforts, preserve the environment, or prepare for potential future disasters in vulnerable areas. I have been contributing vector data to HOT for a few years, mainly working on tasks in South America. To contribute to HOT, I first select a project and go over the instructions. Different projects have different goals, such as mapping buildings, roads, waterways, etc. I then select a task and start mapping. I use the provided aerial imagery and try to match the data to it as accurately as possible. Once all the houses/roads/rivers etc have been added, I upload the task for review. After a task has been reviewed and approved, it is published. The goal of HOT is to contribute info to data-sparse areas, allowing for humanitarian aid missions, local conservation efforts, or simply to collect data in regions that are disaster prone in case of a future disaster. The picture above shows tasks I'm currently working on in La Guaira, Venezuela. Yesterday, Venezuela was hit by a series of powerful earthquakes, which destroyed hundreds of buildings and led to thousands of casualties. The goal of this project is to add vector data of the buildings in the town of La Guaira, which was hit particularly hard by the disaster, so that humanitarian teams know where homes are or used to be. I have added all the buildings visible in the picture above. Before that, only a few buildings such as the town hall and bus terminal were visible. </p>
+                <pre> </pre>
+                <a class="link" href="https://tasks.hotosm.org/projects/53994">Learn More About The Project in La Guaira</a>
                 <pre> </pre>
                 <small><strong>Credits:</strong> Screenshots from OpenStreetMap </small>
             </div>
